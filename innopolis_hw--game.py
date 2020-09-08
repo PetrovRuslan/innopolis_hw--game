@@ -1,12 +1,5 @@
 from random import randint
 
-def check_input () -> str:
-    global action
-    while action != '1' and action != '2':
-        print('введите корректное значение')
-        action = input()
-    return action
-
 KNIGHT_HEALTH = 10
 
 KNIGHT_STRENGTH = 10
@@ -22,6 +15,15 @@ POSSIBLE_VALUES = ['monster', 'apple', 'sword']
 SLAIN_MONSTERS = 0
 
 CONTINUE = True
+
+action = ''
+
+def check_input () -> str:
+    global action
+    while action != '1' and action != '2':
+        print('введите корректное значение')
+        action = input()
+    return action
 
 print('Start game')
 
