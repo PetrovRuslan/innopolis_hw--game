@@ -1,5 +1,12 @@
 from random import randint
 
+def check_input () -> str:
+    global action
+    while action != '1' and action != '2':
+        print('введите корректное значение')
+        action = input()
+    return action
+
 KNIGHT_HEALTH = 10
 
 KNIGHT_STRENGTH = 10
@@ -22,7 +29,7 @@ while CONTINUE:
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     action = ''
     random_value = randint(0,2)
-    print('кол-во побежденный монстров:', SLAIN_MONSTERS, '*' * SLAIN_MONSTERS)
+    print('кол-во побежденных монстров:', SLAIN_MONSTERS, '*' * SLAIN_MONSTERS)
     print('кол-во жизней:', KNIGHT_HEALTH , '@' * KNIGHT_HEALTH)
     print('сила удара:', KNIGHT_STRENGTH , '^' * KNIGHT_STRENGTH)
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
@@ -38,9 +45,7 @@ while CONTINUE:
             MONSTER_POWER = randint(5,20)
             print('Вы встретили чудовище с', MONSTER_HEALTH, 'жизнями и с силой удара', MONSTER_POWER)
             action = input()
-            while action != '1' and action != '2':
-                print('введите корректное значение')
-                action = input()
+            check_input()
             if action == '1':
                 print('вы повстречали монстра')
                 if KNIGHT_HEALTH <= MONSTER_POWER:
@@ -48,7 +53,7 @@ while CONTINUE:
                     break
                 elif MONSTER_HEALTH > KNIGHT_STRENGTH:
                     print('не убить с одного удара')
-                    while MONSTER_HEALTH != 0 or MONSTER_HEALTH < 0:
+                    while MONSTER_HEALTH > 0:
                         if KNIGHT_HEALTH <= 0:
                             print('Игра окончена')
                             CONTINUE = False
@@ -72,9 +77,7 @@ while CONTINUE:
             SWORD_POWER = randint(1,20)
             print('сила меча ', SWORD_POWER)
             action = input()
-            while action != '1' and action != '2':
-                print('введите корректное значение')
-                action = input()
+            check_input()
             if action == '1':
                 KNIGHT_STRENGTH = SWORD_POWER
             elif action == '2':
